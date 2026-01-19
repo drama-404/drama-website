@@ -1,26 +1,313 @@
+/**
+ * Drama Website - Global Styles & Design System
+ *
+ * This file defines:
+ * - CSS custom properties (design tokens)
+ * - Tailwind configuration
+ * - Glassmorphism utilities
+ * - Gradient text styles
+ * - Glow effects
+ * - Custom scrollbar
+ */
+
 @import "tailwindcss";
 
+/* ============================================================================
+   DESIGN TOKENS
+   ============================================================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Background Colors */
+  --color-base-darker: #0a0a0f;
+  --color-base-dark: #12121a;
+  --color-base: #1a1a24;
+
+  /* Accent Colors */
+  --color-accent-cyan: #00f5d4;
+  --color-accent-magenta: #f72585;
+  --color-accent-violet: #7b2cbf;
+
+  /* Text Colors */
+  --color-text-primary: #f8f9fa;
+  --color-text-secondary: #adb5bd;
+  --color-text-muted: #6c757d;
+
+  /* Font Families (set by Next.js font loader) */
+  --font-display: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
 }
+
+/* ============================================================================
+   TAILWIND THEME CONFIGURATION
+   ============================================================================ */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Colors */
+  --color-base-darker: var(--color-base-darker);
+  --color-base-dark: var(--color-base-dark);
+  --color-base: var(--color-base);
+
+  --color-accent-cyan: var(--color-accent-cyan);
+  --color-accent-magenta: var(--color-accent-magenta);
+  --color-accent-violet: var(--color-accent-violet);
+
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-muted: var(--color-text-muted);
+
+  /* Fonts */
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ============================================================================
+   BASE STYLES
+   ============================================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-base-darker);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Selection */
+::selection {
+  background: var(--color-accent-cyan);
+  color: var(--color-base-darker);
+}
+
+/* ============================================================================
+   TYPOGRAPHY
+   ============================================================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+code, pre, kbd, samp {
+  font-family: var(--font-mono);
+}
+
+/* ============================================================================
+   GLASSMORPHISM UTILITIES
+   ============================================================================ */
+
+.glass {
+  background: rgba(26, 26, 36, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-card {
+  background: rgba(18, 18, 26, 0.6);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.5rem;
+}
+
+.glass-light {
+  background: rgba(248, 249, 250, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================================================
+   GRADIENT TEXT
+   ============================================================================ */
+
+.gradient-text {
+  background: linear-gradient(
+    135deg,
+    var(--color-accent-cyan) 0%,
+    var(--color-accent-violet) 50%,
+    var(--color-accent-magenta) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Animated gradient text (optional, add class for animation) */
+.gradient-text-animated {
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* ============================================================================
+   GLOW EFFECTS
+   ============================================================================ */
+
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(0, 245, 212, 0.3),
+              0 0 40px rgba(0, 245, 212, 0.2),
+              0 0 60px rgba(0, 245, 212, 0.1);
+}
+
+.glow-magenta {
+  box-shadow: 0 0 20px rgba(247, 37, 133, 0.3),
+              0 0 40px rgba(247, 37, 133, 0.2),
+              0 0 60px rgba(247, 37, 133, 0.1);
+}
+
+.glow-violet {
+  box-shadow: 0 0 20px rgba(123, 44, 191, 0.3),
+              0 0 40px rgba(123, 44, 191, 0.2),
+              0 0 60px rgba(123, 44, 191, 0.1);
+}
+
+/* Text glow */
+.text-glow-cyan {
+  text-shadow: 0 0 10px rgba(0, 245, 212, 0.5),
+               0 0 20px rgba(0, 245, 212, 0.3);
+}
+
+/* ============================================================================
+   CUSTOM SCROLLBAR
+   ============================================================================ */
+
+/* Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-base-darker);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-base);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-violet);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-base) var(--color-base-darker);
+}
+
+/* ============================================================================
+   FOCUS STYLES (Accessibility)
+   ============================================================================ */
+
+:focus-visible {
+  outline: 2px solid var(--color-accent-cyan);
+  outline-offset: 2px;
+}
+
+/* ============================================================================
+   ANIMATIONS
+   ============================================================================ */
+
+/* Fade in */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Slide up */
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Float */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Pulse glow */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Animation utility classes */
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.6s ease-out;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* ============================================================================
+   UTILITY CLASSES
+   ============================================================================ */
+
+/* Hide scrollbar but keep functionality */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Text balance for headings */
+.text-balance {
+  text-wrap: balance;
 }

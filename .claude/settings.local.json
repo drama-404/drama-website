@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(dir:*)",
+      "Bash(source venv/Scripts/activate)",
+      "Bash(pip install:*)",
+      "mcp__plugin_context7_context7__query-docs",
+      "Bash(npm run build:*)"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "supabase"
+  ],
+  "outputStyle": "Explanatory"
+}
